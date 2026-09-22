@@ -19,7 +19,7 @@ class AuthServiceTest extends BaseServiceTest {
     private AuthService authService;
 
     private RegisterRequest registerRequest() {
-        return new RegisterRequest("Ana Souza", "ana_souza", "ana@example.com", "123456", "123456");
+        return new RegisterRequest("Ana Souza", "ana_souza", "ana@example.com", "senha123", "senha123");
     }
 
     @Test
@@ -48,7 +48,7 @@ class AuthServiceTest extends BaseServiceTest {
     void registerWithDuplicateUsernameIsRejected() {
         authService.register(registerRequest());
         RegisterRequest otherEmail = new RegisterRequest("Outra Pessoa", "ana_souza",
-                "outra@example.com", "123456", "123456");
+                "outra@example.com", "senha123", "senha123");
 
         assertThatThrownBy(() -> authService.register(otherEmail))
                 .isInstanceOf(BusinessRuleException.class)
@@ -58,7 +58,7 @@ class AuthServiceTest extends BaseServiceTest {
     @Test
     void registerWithPasswordMismatchIsRejected() {
         RegisterRequest mismatch = new RegisterRequest("Ana Souza", "ana_souza",
-                "ana@example.com", "123456", "654321");
+                "ana@example.com", "senha123", "654321");
 
         assertThatThrownBy(() -> authService.register(mismatch))
                 .isInstanceOf(BusinessRuleException.class)
@@ -69,10 +69,10 @@ class AuthServiceTest extends BaseServiceTest {
     void loginByIdentifier() {
         authService.register(registerRequest());
 
-        AuthResponse byEmail = authService.login(new LoginRequest("ana@example.com", "123456"));
+        AuthResponse byEmail = authService.login(new LoginRequest("ana@example.com", "senha123"));
         assertThat(byEmail.token()).isNotBlank();
 
-        AuthResponse byUsername = authService.login(new LoginRequest("ana_souza", "123456"));
+        AuthResponse byUsername = authService.login(new LoginRequest("ana_souza", "senha123"));
         assertThat(byUsername.token()).isNotBlank();
         assertThat(byUsername.user().name()).isEqualTo("Ana Souza");
     }

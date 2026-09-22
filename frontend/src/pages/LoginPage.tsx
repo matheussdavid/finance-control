@@ -31,15 +31,17 @@ export function LoginPage() {
     if (mode === 'login') {
       if (!identifier.trim()) return t('login.identifierRequired')
       if (!password) return t('login.passwordRequired')
-      if (password.length < 6) return t('login.passwordMin')
+      if (password.length < 8) return t('login.passwordMin')
       return null
     }
     if (!name.trim()) return t('login.nameRequired')
+    if (name.trim().length < 2) return t('login.nameTooShort')
     if (!username.trim()) return t('login.usernameRequired')
+    if (username.trim().length < 2) return t('login.usernameTooShort')
     if (!email.trim()) return t('login.emailRequired')
     if (!/^\S+@\S+\.\S+$/.test(email)) return t('login.emailInvalid')
     if (!password) return t('login.passwordRequired')
-    if (password.length < 6) return t('login.passwordMin')
+    if (password.length < 8) return t('login.passwordMin')
     if (!confirmPassword) return t('login.confirmPasswordRequired')
     if (password !== confirmPassword) return t('login.passwordMismatch')
     return null
@@ -106,7 +108,7 @@ export function LoginPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  maxLength={100}
+                  maxLength={50}
                   placeholder={t('login.namePlaceholder')}
                   autoFocus
                 />
@@ -125,7 +127,7 @@ export function LoginPage() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
-                  maxLength={100}
+                  maxLength={50}
                   placeholder={t('login.usernamePlaceholder')}
                 />
               </FormField>
@@ -160,6 +162,7 @@ export function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  maxLength={100}
                   placeholder={t('login.emailPlaceholder')}
                 />
               </FormField>
@@ -177,7 +180,8 @@ export function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                minLength={6}
+                minLength={8}
+                maxLength={30}
                 placeholder={t('login.passwordPlaceholder')}
               />
             </FormField>
@@ -195,7 +199,8 @@ export function LoginPage() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
-                  minLength={6}
+                  minLength={8}
+                maxLength={30}
                   placeholder={t('login.confirmPasswordPlaceholder')}
                 />
               </FormField>
