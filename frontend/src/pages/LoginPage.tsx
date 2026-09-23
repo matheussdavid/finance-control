@@ -98,13 +98,13 @@ export function LoginPage() {
           <form data-testid="login-form" id="login-form" onSubmit={handleSubmit} noValidate className="login-form__form">
             {mode === 'register' && (
               <FormField
-                data-testid="login-name-field"
+                data-testid="register-name-field"
                 label={t('common.name')}
                 htmlFor="login-name"
               >
                 <Input
                   id="login-name"
-                  data-testid="login-name-input"
+                  data-testid="register-name-input"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -117,13 +117,13 @@ export function LoginPage() {
 
             {mode === 'register' && (
               <FormField
-                data-testid="login-username-field"
+                data-testid="register-username-field"
                 label={t('login.username')}
                 htmlFor="login-username"
               >
                 <Input
                   id="login-username"
-                  data-testid="login-username-input"
+                  data-testid="register-username-input"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -151,13 +151,13 @@ export function LoginPage() {
               </FormField>
             ) : (
               <FormField
-                data-testid="login-email-field"
+                data-testid="register-email-field"
                 label={t('common.email')}
                 htmlFor="login-email"
               >
                 <Input
                   id="login-email"
-                  data-testid="login-email-input"
+                  data-testid="register-email-input"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -188,13 +188,13 @@ export function LoginPage() {
 
             {mode === 'register' && (
               <FormField
-                data-testid="login-confirm-password-field"
+                data-testid="register-confirm-password-field"
                 label={t('login.confirmPassword')}
                 htmlFor="login-confirm-password"
               >
                 <Input
                   id="login-confirm-password"
-                  data-testid="login-confirm-password-input"
+                  data-testid="register-confirm-password-input"
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
