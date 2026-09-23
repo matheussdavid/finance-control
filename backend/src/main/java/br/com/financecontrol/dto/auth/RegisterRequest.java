@@ -19,7 +19,7 @@ public record RegisterRequest(
         @Schema(example = "ana@example.com")
         @NotBlank(message = "email.required")
         @Email(message = "email.invalid")
-        @Size(max = 100, message = "email.tooLong")
+        @Size(max = 50, message = "email.tooLong")
         String email,
 
         @Schema(example = "senha123")

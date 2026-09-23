@@ -162,7 +162,7 @@ export function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  maxLength={100}
+                  maxLength={50}
                   placeholder={t('login.emailPlaceholder')}
                 />
               </FormField>
